@@ -91,9 +91,13 @@ Before starting, make sure you have:
 3. **Set up environment variables:**
    Create a `.env` file in the project root:
 ```
-   VITE_CG_API_KEY=your-coingecko-api-key
+VITE_CG_API_KEY=your-coingecko-api-key
+VITE_AUTH0_DOMAIN=your-auth0-domain
+VITE_AUTH0_CLIENT_ID=your-auth0-client-id
 ```
-   Get your free API key from [CoinGecko API](https://www.coingecko.com/en/api)
+   - `VITE_CG_API_KEY`: Get your free API key from [CoinGecko API](https://www.coingecko.com/en/api)
+   - `VITE_AUTH0_DOMAIN`: Your Auth0 domain (e.g., `example.us.auth0.com`)
+   - `VITE_AUTH0_CLIENT_ID`: Your Auth0 client ID
 
 4. **Start the development server:**
 ```sh

@@ -190,16 +190,16 @@ const BlogDetail = () => {
   return (
     <div className="blog-page">
       {/* Blog Title */}
-      <h1 className="blog-title">{blog.title}</h1>
-      <p className="blog-card-date">{blog.date}</p>
+      <h1 data-aos="fade-in" className="blog-title">{blog.title}</h1>
+      <p data-aos="fade-in" className="blog-card-date">{blog.date}</p>
 
       {/* Center Image */}
-      <div className="blog-hero">
+      <div data-aos="zoom-in" className="blog-hero">
         <img src={blog.image} alt={blog.title} />
       </div>
 
       {/* Table of Contents */}
-      <div className="blog-desc">
+      <div data-aos="fade-in" className="blog-desc">
         <h3>Table of Contents</h3>
         <ul>
           {blog.toc.map((item, index) => (
@@ -210,19 +210,19 @@ const BlogDetail = () => {
 
       {/* Blog Content */}
       {blog.sections.map((section, index) => (
-        <div key={index} className="blog-desc">
+        <div data-aos="fade-up" key={index} className="blog-desc">
           <h2>{section.heading}</h2>
           <p style={{ whiteSpace: "pre-line" }}>{section.text}</p>
         </div>
       ))}
 
       {/*  Go Back Button - Added at the end */}
-      <div className="blog-back-container">
+      <div data-aos="fade-out" className="blog-back-container">
         <button
           className="blog-back-btn"
           onClick={() => navigate(-1)} // go back button will move on back
         >
-           Go Back
+          Go Back
         </button>
       </div>
     </div>

@@ -1,11 +1,16 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./Navbar.css";
+import { useAuth0 } from "@auth0/auth0-react";
+import Login from "./Login";
+import Signup from "./Signup";
+import Logout from "./Logout";
 
 import { CoinContext } from "../context/CoinContext";
 import { Link } from "react-router-dom";
 
 function Navbar() {
   const { setCurrency } = useContext(CoinContext);
+  const { loginWithRedirect, logout, isAuthenticated, isLoading, user } = useAuth0();
 
   const [isDark, setIsDark] = useState(() => {
     const savedTheme = localStorage.getItem("cryptohub-theme");
@@ -43,6 +48,8 @@ function Navbar() {
     }
   }, [isDark]);
 
+  if (isLoading) return null;
+
   return (
     <div className="navbar">
       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
@@ -55,11 +62,11 @@ function Navbar() {
             gap: "10px",
           }}
         >
-          <img 
-     src="/crypto-logo.png" 
-     alt="CryptoHub Logo" 
-     className="navbar-logo"
-   />
+          <img
+            src="/crypto-logo.png"
+            alt="CryptoHub Logo"
+            className="navbar-logo"
+          />
           <span className="logo-text">CryptoHub</span>
         </Link>
       </div>
@@ -88,12 +95,18 @@ function Navbar() {
           <option value="eur">EUR</option>
           <option value="inr">INR</option>
         </select>
-        <Link to="/login">
-          <button className="login-btn">Login</button>
-        </Link>
-                <Link to="/signup">
-          <button className="signup-btn">Sign up</button>
-        </Link>
+
+        {isAuthenticated ? (
+          <>
+            <Logout logout={logout} />
+            <p className="user-greeting">Welcome, {user?.name.split(" ")[0] || user?.name}</p>
+          </>
+        ) : (
+          <>
+            <Login loginWithRedirect={loginWithRedirect} />
+            <Signup loginWithRedirect={loginWithRedirect} />
+          </>
+        )}
       </div>
     </div>
   );
