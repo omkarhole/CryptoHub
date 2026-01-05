@@ -1,25 +1,52 @@
-.spinner {
+/* .spinner {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh;
+    /* min-height: 80vh;
     width: 100vw;
     height: 100vh;
     position: fixed;
     top: 0;
-    left: 0;
+    left: 50%;
+    right: 50%;
     background: transparent;
     z-index: 9999;
 }
+ */
+.coin-loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position:fixed;
+    min-height: 100vh;
+    height: 10vh;
+    width: 100vw;
+    z-index:999;
+}
 
 .spin {
-    width: 65px;
-    height: 65px;
-    border: 5px solid #bdbdbd;
-    border-top: 5px solid #4500c6;
-    border-right: 5px solid transparent;
+    --uib-size: 50px;
+    --uib-color: #7927ff;
+    --uib-speed: 1.5s;
+    --uib-dot-size: calc(var(--uib-size) * 0.4);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--uib-dot-size);
+    width: var(--uib-size);
+}
+
+.spin::before,
+.spin::after {
+    content: '';
+    position: absolute;
+    height: var(--uib-dot-size);
+    width: var(--uib-dot-size);
     border-radius: 50%;
-    animation: spin 1s linear infinite;
+    background-color: var(--uib-color);
+    flex-shrink: 0;
+    transition: background-color 0.3s ease;
 }
 
 @keyframes spin {
