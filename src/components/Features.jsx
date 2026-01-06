@@ -151,43 +151,22 @@ const Features = () => {
           </div>
         </div>
 
-        <div className="chart-wrapper">
-          {loading ? (
-            <div className="features-loading">
-              <div
-                className="dot-pulse"
-                style={{ background: currentCoin.color, boxShadow: `0 0 15px ${currentCoin.color}` }}
-              ></div>
-              <p>Loading Data...</p>
-            </div>
-          ) : prices.length === 0 ? (
-            <div className="no-data">
-              <p>No data available.</p>
-            </div>
-          ) : (
-            <Line
-              data={{
-                ...chartData,
-                datasets: chartData.datasets.map(dataset => ({
-                  ...dataset,
-                  borderColor: currentCoin.color,
-                  backgroundColor: (context) => {
-                    const ctx = context.chart.ctx;
-                    const gradient = ctx.createLinearGradient(0, 0, 0, 300);
-                    gradient.addColorStop(0, hexToRgba(currentCoin.color, 0.25));
-                    gradient.addColorStop(1, hexToRgba(currentCoin.color, 0));
-                    return gradient;
-                  },
-                  borderWidth: 2,
-                  pointRadius: 0,
-                  pointHoverRadius: 6,
-                  pointHoverBackgroundColor: currentCoin.color,
-                  pointHoverBorderColor: '#fff',
-                  pointHoverBorderWidth: 2,
-                  fill: true,
-                  tension: 0.2,
-                }))
-              }}
+      {/* CARD */}
+      <div className="features-card">
+        {loading ? (
+          <div className="features-loading">
+            <div className="loader"></div>
+            <p className="loading-text">Loading {topCoins.find(c => c.id === selectedCoin)?.name} chart...</p>
+          </div>
+        ) : prices.length === 0 ? (
+          <div className="no-data">
+            <h3>No data available</h3>
+            <p>Please try a different coin or time range</p>
+          </div>
+        ) : (
+          <div className="chart-wrapper">
+            <Line 
+              data={chartData}
               options={{
                 responsive: true,
                 maintainAspectRatio: false,
@@ -259,7 +238,24 @@ const Features = () => {
                 }
               }}
             />
-          )}
+          </div>
+        )}
+      </div>
+
+      {/* TOP 5 COINS DISPLAY */}
+      <div className="top-coins-display">
+        <h3 className="top-coins-title">Top 5 Coins</h3>
+        <div className="coins-grid">
+          {topCoins.map((coin) => (
+            <div 
+              key={coin.id}
+              className={`coin-item ${selectedCoin === coin.id ? 'active' : ''}`}
+              onClick={() => setSelectedCoin(coin.id)}
+            >
+              <span className="coin-symbol">{coin.symbol}</span>
+              <span className="coin-name">{coin.name}</span>
+            </div>
+          ))}
         </div>
       </motion.div>
 
@@ -271,5 +267,3 @@ const Features = () => {
 };
 
 export default Features;
-
-

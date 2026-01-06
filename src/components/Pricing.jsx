@@ -1,57 +1,47 @@
-import React from "react";
-import "./Pricing.css";
+import { useTheme } from "../context/ThemeContext";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { plans, comparisonFeatures, faqs } from "../data/pricingPlans";
+import 'Pricing.css';
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { FiCheck, FiX } from "react-icons/fi";
 
 export default function Pricing() {
-  const plans = [
-    {
-      name: "Explorer",
-      price: "Free",
-      period: "forever",
-      description: "Essential tools for crypto beginners.",
-      highlight: false,
-      features: [
-        { label: "Top 50 Coins Tracking", available: true },
-        { label: "Real-time Prices", available: true },
-        { label: "Basic Charts", available: true },
-        { label: "Portfolio Tracker", available: false },
-        { label: "Price Alerts", available: false },
-        { label: "AI Insights", available: false },
-      ],
-    },
-    {
-      name: "Voyager",
-      price: "₹399",
-      period: "/month",
-      description: "Advanced analytics for serious traders.",
-      highlight: true,
-      features: [
-        { label: "Top 500 Coins Tracking", available: true },
-        { label: "Advanced Charting", available: true },
-        { label: "Portfolio Tracker", available: true },
-        { label: "Price Alerts (5/day)", available: true },
-        { label: "Ad-free Experience", available: true },
-        { label: "AI Insights", available: false },
-      ],
-    },
-    {
-      name: "Galactic",
-      price: "₹999",
-      period: "/month",
-      description: "Unlimited power for professionals.",
-      highlight: false,
-      features: [
-        { label: "Unlimited Tracking", available: true },
-        { label: "Pro Analytics Suite", available: true },
-        { label: "Unlimited Portfolio", available: true },
-        { label: "Unlimited Alerts", available: true },
-        { label: "Ad-free Experience", available: true },
-        { label: "AI Insights & Signals", available: true },
-      ],
-    },
-  ];
+  const { isDark } = useTheme();
+  const navigate = useNavigate();
+  const [billingCycle, setBillingCycle] = useState("monthly");
+  const [openFaqIndex, setOpenFaqIndex] = useState(null);
+
+  const handlePlanClick = (planName) => {
+    if (planName === "Free") {
+      navigate("/signup");
+    } else {
+      alert("💳 Payment Gateway Coming Soon!\n\nWe're working on integrating secure payment options. Stay tuned!");
+    }
+  };
+
+  const containerBg = isDark
+    ? 'bg-gradient-to-b from-[#0a0a1b] via-[#0f0f23] to-[#0a0a1b]'
+    : 'bg-gradient-to-b from-gray-50 via-white to-gray-50';
+
+  const textPrimary = isDark ? 'text-white' : 'text-gray-900';
+  const textSecondary = isDark ? 'text-gray-400' : 'text-gray-600';
+  const textTertiary = isDark ? 'text-gray-500' : 'text-gray-600';
+
+  const cardBg = (popular) => popular
+    ? isDark
+      ? 'bg-gradient-to-b from-purple-900/20 to-gray-900/50 border-2 border-purple-500 shadow-2xl shadow-purple-500/20 lg:scale-105'
+      : 'bg-white border-2 border-purple-500 shadow-2xl lg:scale-105'
+    : isDark
+      ? 'bg-gray-900/50 border border-gray-800 hover:border-gray-700 shadow-xl'
+      : 'bg-white border border-gray-200 hover:border-gray-300 shadow-lg';
+
+  const buttonBg = (popular) => popular
+    ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg shadow-purple-500/30'
+    : isDark
+      ? 'bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 text-white'
+      : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg';
 
   return (
     <div className="pricing-page">

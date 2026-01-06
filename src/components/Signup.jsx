@@ -8,7 +8,7 @@ import { FiUser, FiMail, FiLock, FiEye, FiEyeOff } from "react-icons/fi";
 
 function Signup() {
   const navigate = useNavigate();
-  const { signup, loginWithGoogle, currentUser } = useAuth();
+  const { signup, currentUser } = useAuth();
 
   const [formData, setFormData] = useState({
     fullName: "",

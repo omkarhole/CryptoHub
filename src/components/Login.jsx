@@ -8,7 +8,7 @@ import { FiMail, FiLock, FiEye, FiEyeOff } from "react-icons/fi";
 
 function Login() {
   const navigate = useNavigate();
-  const { login, loginWithGoogle, currentUser } = useAuth();
+  const { login, currentUser } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     password: "",

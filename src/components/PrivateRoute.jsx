@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const PrivateRoute = ({ children }) => {
-    const { currentUser, loading } = useAuth();
+  const { currentUser, loading } = useAuth();
 
    
     if (loading) {
@@ -17,7 +17,7 @@ const PrivateRoute = ({ children }) => {
         );
     }
 
-    return currentUser ? children : <Navigate to="/login" />;
+  return currentUser ? children : <Navigate to="/login" />;
 };
 
 export default PrivateRoute;
