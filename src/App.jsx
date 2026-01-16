@@ -1,32 +1,31 @@
-// App.jsx
 import React, { useEffect, useContext } from "react";
-import Navbar from "./components/Navbar";
+import Navbar from "@/components/Navbar";
 import { Routes, Route, useLocation } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import CoinWrapper from "./pages/Home/Coin/CoinWrapper";
-import Footer from "./components/Footer";
-import Pricing from "./components/Pricing";
-import Blog from "./components/Blog";
-import Features from "./components/Features";
-import Signup from "./components/Signup";
-import Login from "./components/Login";
-import BlogDetail from "./components/BlogDetail";
-import DashboardLayout from "./pages/Dashboard/DashboardLayout";
-import DashboardContent from "./pages/Dashboard/DashboardContent";
-import MarketOverview from "./pages/Dashboard/MarketOverview";
-import Leaderboard from "./components/Leaderboard";
-import ChangePassword from "./components/ChangePassword";
-import ForgotPassword from "./components/ForgotPassword";
-import PrivateRoute from "./components/PrivateRoute";
-import { AuthProvider } from "./context/AuthContext";
-import { ThemeProvider } from "./context/ThemeContext";
-import Contributors from "./components/Contributors";
+import Home from "@/pages/Home/Home";
+import CoinWrapper from "@/pages/Home/Coin/CoinWrapper";
+import Footer from "@/components/Footer";
+import Pricing from "@/components/Pricing";
+import Blog from "@/components/Blog";
+import Features from "@/components/Features";
+import Signup from "@/components/Signup";
+import Login from "@/components/Login";
+import BlogDetail from "@/components/BlogDetail";
+import DashboardLayout from "@/pages/Dashboard/DashboardLayout";
+import DashboardContent from "@/pages/Dashboard/DashboardContent";
+import MarketOverview from "@/pages/Dashboard/MarketOverview";
+import Leaderboard from "@/components/Leaderboard";
+import ChangePassword from "@/components/ChangePassword";
+import ForgotPassword from "@/components/ForgotPassword";
+import PrivateRoute from "@/components/PrivateRoute";
+import { AuthProvider } from "@/context/AuthContext";
+import { ThemeProvider } from "@/context/ThemeContext";
+import Contributors from "@/components/Contributors";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { CoinContext } from "./context/CoinContext";
-import LoadingSpinner from "./components/LoadingSpinner";
+import { CoinContext } from "@/context/CoinContext";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import { Toaster } from "react-hot-toast";
-import ScrollToTop from "./components/ScrollToTop";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const App = () => {
   const { isLoading } = useContext(CoinContext);
@@ -105,6 +104,9 @@ const App = () => {
 
               {/* Coin route - accessible to all but shows sidebar if logged in */}
               <Route path="/coin/:coinId" element={<CoinWrapper />} />
+              
+              {/* Add 404 Route if you implemented it earlier */}
+              {/* <Route path="*" element={<NotFound />} /> */}
             </Routes>
             {!isDashboard && <Footer />}
           </div>
