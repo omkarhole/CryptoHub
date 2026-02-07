@@ -849,11 +849,11 @@ body::before {
 @media (max-width: 768px) {
   .contributors-page { padding: 1.5rem 1rem; }
   .contributors-controls { 
-    flex-direction: column; 
-    align-items: stretch; 
+    justify-content: center;
+    align-items: center; 
     gap: 1.5rem;
   }
-  .contributors-search-input { min-width: auto; }
+  .contributors-search-input { min-width: 200px; }
   .contributors-grid { 
     grid-template-columns: 1fr; 
     gap: 2rem; 
@@ -868,6 +868,9 @@ body::before {
     flex-direction: column; 
     gap: 1.5rem; 
     text-align: center; 
+  }
+  .contributors-filters{
+    flex-direction: column;
   }
 }
 
