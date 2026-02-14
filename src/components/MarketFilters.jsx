@@ -8,32 +8,15 @@ const MarketFilters = () => {
   const [open, setOpen] = useState(false);
 
   const toggleFilter = (filter) => {
-    // Clicking "all"
-    if (filter === "all") {
-      setSelectedFilters(["all"]);
-      return;
-    }
-
     setSelectedFilters((prev) => {
-      let updated = [...prev];
+      // If clicking "all", reset to all
+      if (filter === "all") return ["all"];
 
-      // Remove "all" if another filter is selected
-      updated = updated.filter((f) => f !== "all");
+      // If clicking the currently active filter, toggle off to "all"
+      if (prev.includes(filter)) return ["all"];
 
-      if (updated.includes(filter)) {
-        // Remove filter
-        updated = updated.filter((f) => f !== filter);
-      } else {
-        // Add filter
-        updated.push(filter);
-      }
-
-      // If nothing selected, reset to "all"
-      if (updated.length === 0) {
-        return ["all"];
-      }
-
-      return updated;
+      // Otherwise, switch to the new filter (single selection)
+      return [filter];
     });
   };
 

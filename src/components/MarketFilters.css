@@ -30,8 +30,17 @@
 }
 
 .filter-btn.active {
-  background: #7927ff;
-  border-color: #7927ff;
+  background: #00f3ff;
+  border-color: #00f3ff;
+  color: #130032;
+  box-shadow: 0 0 12px rgba(0, 243, 255, 0.6);
+  font-weight: 700;
+  transform: translateY(-1px);
+}
+
+.filter-btn.active:hover {
+  background: #33f6ff;
+  box-shadow: 0 0 16px rgba(0, 243, 255, 0.8);
 }
 
 /* Toggle button hidden on desktop */
@@ -45,7 +54,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-}
+  }
+
   .filter-toggle {
     display: block;
     background: #111;
@@ -81,7 +91,8 @@
   .market-filters.open {
     opacity: 1;
     transform: translateY(0);
-    max-height: 300px; /* safe height */
+    max-height: 300px;
+    /* safe height */
     pointer-events: auto;
   }
 
