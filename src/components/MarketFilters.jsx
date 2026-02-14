@@ -31,21 +31,21 @@ const MarketFilters = () => {
         <span className="filter-label">Filters:</span>
 
         <button
-          className={`filter-btn ${selectedFilters.includes("all") ? "active" : ""}`}
+          className={`market-filter-btn ${selectedFilters.includes("all") ? "active" : ""}`}
           onClick={() => toggleFilter("all")}
         >
           All Coins
         </button>
 
         <button
-          className={`filter-btn ${selectedFilters.includes("trending") ? "active" : ""}`}
+          className={`market-filter-btn ${selectedFilters.includes("trending") ? "active" : ""}`}
           onClick={() => toggleFilter("trending")}
         >
           Trending
         </button>
 
         <button
-          className={`filter-btn ${selectedFilters.includes("top_gainers") ? "active" : ""}`}
+          className={`market-filter-btn ${selectedFilters.includes("top_gainers") ? "active" : ""}`}
           onClick={() => toggleFilter("top_gainers")}
         >
           Top Gainers

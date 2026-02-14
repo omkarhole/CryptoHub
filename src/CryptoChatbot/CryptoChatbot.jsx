@@ -480,16 +480,30 @@ export default function CryptoChatbot() {
         @media (max-width: 480px) {
           .crypto-chat-window {
             right: 8px;
-            bottom: 90px;
+            bottom: 110px;
             width: calc(100vw - 16px);
-            height: calc(100vh - 110px);
+            height: calc(100vh - 130px);
             border-radius: 12px;
           }
           .crypto-chat-toggle {
-            bottom: 16px;
+            bottom: 80px; /* Moved up to clear scroll button */
             right: 16px;
             width: 52px;
             height: 52px;
+          }
+        }
+
+        @media (max-width: 400px) {
+          .crypto-chat-window {
+            right: 4px;
+            width: calc(100vw - 8px);
+            bottom: 110px;
+          }
+          .crypto-chat-toggle {
+            width: 48px;
+            height: 48px;
+            bottom: 85px; 
+            right: 12px;
           }
         }
       `}</style>
