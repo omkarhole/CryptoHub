@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { useTheme } from "../../context/ThemeContext";
-import { CoinContext } from "../../context/CoinContext";
+import { useTheme } from "../../context/useTheme";
+import { CoinContext } from "../../context/CoinContextInstance";
 import "./MarketOverview.css";
 
 const MarketOverview = () => {
@@ -39,6 +39,7 @@ const MarketOverview = () => {
   }, [allCoin]);
 
   const formatPrice = (price) => {
+    if (price == null) return "-";
     if (currency.symbol === "₹") {
       return `₹${price.toLocaleString()}`;
     } else if (currency.symbol === "€") {
@@ -271,7 +272,7 @@ const MarketOverview = () => {
                 </div>
                 <span
                   className={
-                    coin.price_change_percentage_24h > 0
+                    (coin.price_change_percentage_24h || 0) > 0
                       ? "text-green-400"
                       : "text-red-400"
                   }
@@ -289,7 +290,10 @@ const MarketOverview = () => {
                   className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}
                 >
                   MCap: {currency.symbol}
-                  {(coin.market_cap / 1e9).toFixed(2)}B
+                  {coin.market_cap
+                    ? (coin.market_cap / 1e9).toFixed(2)
+                    : "0.00"}
+                  B
                 </p>
               </div>
             </div>
