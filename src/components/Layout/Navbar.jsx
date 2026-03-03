@@ -125,6 +125,7 @@ function Navbar() {
         { to: "/trending", label: "Trending" },
         { to: "/gainers", label: "Gainers" },
         { to: "/top-losers", label: "Top Losers" },
+        {to:"watchlist", label:"Watchlist" },
       ],
     },
     { to: "/blog", label: "Insights" },
@@ -143,6 +144,7 @@ function Navbar() {
 
   const authenticatedNavLinks = [
     ...navLinks,
+    { to: "/watchlist", label: "Watchlist" },
     { to: "/dashboard", label: "Dashboard" },
     { to: "/leaderboard", label: "Leaderboard" },
   ];
