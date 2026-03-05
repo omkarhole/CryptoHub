@@ -3,12 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/useAuth";
 import { useTheme } from "../../context/useTheme";
 import { CoinContext } from "../../context/CoinContextInstance";
+import PortfolioExport from "../../components/PortfolioExport/PortfolioExport";
+import { useActivity } from "../../context/ActivityContext";
 
 const DashboardContent = () => {
   const { currentUser } = useAuth();
   const { isDark } = useTheme();
   const navigate = useNavigate();
   const [greeting, setGreeting] = useState("");
+  const { activities } = useActivity();
 
   useEffect(() => {
     const hour = new Date().getHours();
@@ -22,6 +25,28 @@ const DashboardContent = () => {
       return currentUser.fullName.split(" ")[0];
     }
     return currentUser?.email?.split("@")[0] || "User";
+  };
+
+  // Portfolio data structure for export
+  const portfolioData = {
+    holdings: [],
+    summary: {
+      totalValue: 0,
+      totalInvestment: 0,
+      profitLoss: 0,
+      returnPercentage: 0,
+      totalAssets: 0,
+      change24h: 0,
+    },
+    performance: {
+      totalValue: 0,
+      change24h: 0,
+      change24hPercent: 0,
+      totalProfitLoss: 0,
+      returnPercent: 0,
+      totalAssets: 0,
+      topPerformers: [],
+    },
   };
 
   return (
@@ -258,6 +283,11 @@ const DashboardContent = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Portfolio Export Section */}
+      <div className="mb-8">
+        <PortfolioExport portfolioData={portfolioData} />
       </div>
 
       {/* Market Overview Widget */}

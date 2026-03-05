@@ -47,6 +47,7 @@ import PageNotFound from "@/components/Common/PageNotFound";
 import About from "@/components/Sections/About";
 import CryptoChatbot from "./CryptoChatbot/CryptoChatbot";
 import Feedback from "./pages/Feedback";
+import PortfolioExportPage from "./pages/Dashboard/PortfolioExportPage";
 
 import TrendingCoins from "@/pages/TrendingCoins";
 import NewListings from "@/pages/NewListings";
@@ -97,6 +98,7 @@ const App = () => {
       "/change-password",
       "/saved-insights",
       "/profile",
+      "/portfolio-export",
     ],
     [],
   );
@@ -207,6 +209,7 @@ const App = () => {
                   <Route path="/change-password" element={<ChangePassword />} />
                   <Route path="/saved-insights" element={<SavedInsights />} />
                   <Route path="/profile" element={<Profile />} />
+                  <Route path="/portfolio-export" element={<PortfolioExportPage />} />
                 </Route>
                 <Route path="/coin/:coinId" element={<CoinWrapper />} />
                 <Route path="/privacy" element={<PrivacyPolicy />} />
